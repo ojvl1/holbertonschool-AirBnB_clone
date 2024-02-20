@@ -14,7 +14,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_EOF(self, arg):
-        """Exit the program on EOF"""
+        """Exit the program on EOF (CRTL - d)"""
         print("Exiting the program")
         return True
 
