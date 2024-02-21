@@ -33,7 +33,7 @@ The repository will contain models tha will be used as objects, and various test
 - `state.py` - Class State inherits from BaseModel
 - `user.py` - Class User inherits from BaseModel
 #### /tests/
-- `__init.py` -
+- `__init.py` - Initialization for the console tests
 - `test_cosole.py` - Test cases for the console
 #### /tests/test_models/
 - `__init__.py` - Initialization module for tests
