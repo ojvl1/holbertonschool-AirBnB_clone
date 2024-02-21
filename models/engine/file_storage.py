@@ -2,6 +2,7 @@
 
 import json
 
+
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
@@ -19,11 +20,13 @@ class FileStorage:
             json.dump(serialized_objects, f)
 
     def reload(self):
+        from models.base_model import BaseModel
         try:
-            with open(self.__file_path, 'r') as file:
-              for key, value in json.load(file).items():
-                    value = eval(key.split(".")[0])(**value)
-                    self.__objects[key] = value
-        except:
+            with open(self.__file_path, "r") as file:
+                data = json.load(file)
+                for key, value in data.items():
+                    cls = BaseModel
+                    obj = cls(**value)
+                    self.__objects[key] = obj
+        except FileNotFoundError:
             pass
- 
