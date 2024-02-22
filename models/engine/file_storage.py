@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 import json
+import models
+
 
 class FileStorage:
     __file_path = "file.json"
@@ -14,16 +16,18 @@ class FileStorage:
         self.__objects[key] = obj
 
     def save(self):
-        serialized_objects = {key: obj.to_dict() for key, obj in self.__objects.items()}
+        dic = {}
+        for id, objs in self.__objects.items():
+            dic[id] = objs.to_dict()
         with open(self.__file_path, 'w') as f:
-            json.dump(serialized_objects, f)
+            json.dump(dic, f)
 
     def reload(self):
         try:
             with open(self.__file_path, 'r') as file:
-              for key, value in json.load(file).items():
-                    value = eval(key.split(".")[0])(**value)
-                    self.__objects[key] = value
-        except:
+              data = json.load(file)
+              for key, value in data.items():
+                    class_name = models.allclasses[value['__class__']](**value)
+                    self.__objects[key] = class_name
+        except FileNotFoundError:
             pass
- 
