@@ -11,4 +11,8 @@ class State(BaseModel):
     FileStorage to manage serialization and
     deserialization
     """
+<<<<<<< HEAD
     name = ""
+=======
+    name = ""
+>>>>>>> jc

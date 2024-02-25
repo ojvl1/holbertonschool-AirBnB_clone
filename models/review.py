@@ -13,4 +13,8 @@ class Review(BaseModel):
     """
     place_id = ""
     user_id = ""
+<<<<<<< HEAD
     text = ""
+=======
+    text = ""
+>>>>>>> jc

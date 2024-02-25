@@ -12,4 +12,8 @@ class City(BaseModel):
     deserialization
     """
     state_id = ""
+<<<<<<< HEAD
     name = ""
+=======
+    name = ""
+>>>>>>> jc
