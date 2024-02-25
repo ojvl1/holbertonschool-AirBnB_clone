@@ -12,7 +12,7 @@ class TestReview(unittest.TestCase):
     Test Case
     """
 
-    def review_attributes(self):
+    def test_review_attributes(self):
         """
         Test Attribute Initialization
         """
