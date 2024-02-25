@@ -101,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
             dict_from_storage = storage.all()
             name_id = arg[0] + "." + arg[1]
             if name_id in dict_from_storage:
-                del dict_from_storage
+                del dict_from_storage[name_id]
             else:
                 print("** no instance found **")
             storage.save()
@@ -154,6 +154,20 @@ class HBNBCommand(cmd.Cmd):
                     obj.save()  # Save new update date and storage changes
                 else:
                     print("** no instance found **")
+
+    def count(self, arg):
+        """Prints the total number of instaces of a class"""
+        list_obj = []
+        if not arg:
+            for obj in storage.all().values():
+                list_obj.append(obj)
+            if len(list_obj) > 0:
+                print(f"** class doesn't exit **")
+            else:
+                for obj in storage.all().values():
+                    if type(obj).__name__ == arg:
+                        list_obj.append(str(obj))
+                print(f"{len(list_obj)}")
 
     def emptyline(self):
         """Do nothing on empty line"""
