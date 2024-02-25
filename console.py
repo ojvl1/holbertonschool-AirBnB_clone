@@ -4,11 +4,39 @@
 
 import cmd, json, shlex
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """Defines the command interpreter"""
     prompt = '(hbnb) '
+    __classes_dict = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
+        }
+    __place_dict = {
+        "city_id": str,
+        "user_id": str,
+        "name": str,
+        "description": str,
+        "number_rooms": int,
+        "number_bathrooms": int,
+        "max_guest": int,
+        "price_by_night": int,
+        "latitude": float,
+        "longitude": float,
+        "amenity_ids": []
+    }
 
     def do_quit(self, arg):
         """Exit the program"""
@@ -79,6 +107,7 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_all(self, arg):
+        """print all dictionary"""
         if not arg:
             print("** class doesn't exist **")
         else:
@@ -87,31 +116,38 @@ class HBNBCommand(cmd.Cmd):
                 print(dict_from_storage[all_string])
 
     def do_update(self, arg):
+        """update <class name> <id> <attribute name> <attribute value>"""
         arg = shlex.split(arg)
         total_arguments = len(arg)
-        arg_dict = {
+        argc_dict = {
             0: "** class name missing **",
-            1: "** class doesn't exist **",
-            2: "** instance id missing **",
-            3: "** no instance found **"
-        }
-        if total_arguments in arg_dict :
-            print(f"{arg_dict[total_arguments]}")
+            1: "** instance id missing **",
+            2: "** attribute name missing **",
+            3: "** value missing **"
+            }
+
+        if total_arguments in argc_dict:  # Prints error messages for argc
+            print(f"{argc_dict[total_arguments]}")
         else:
-            try:
-                dict_from_storage = storage.all()
+            if arg[0] not in self.__classes_dict:  # Check if class exists
+                print("** class doesn't exist **")
+            else:
+                class_name = self.__classes_dict[arg[0]]
+                dict_from_storage = storage.all()  # Get dict from storage
                 name_id = arg[0] + "." + arg[1]
-            except:
-                if name_id not in dict_from_storage:
+                attribute = arg[2]
+                attribute_value = arg[3]
+
+                if name_id in dict_from_storage:
+                    obj = dict_from_storage[name_id]  # Get object
+
+                    if hasattr(class_name, attribute):
+                        attribute_type = type(getattr(class_name, attribute))
+                        attribute_value = attribute_type(attribute_value)
+                    setattr(obj, attribute, attribute_value)
+                    obj.save()  # Save new update date and storage changes
+                else:
                     print("** no instance found **")
-            try:
-                attribute = arg[2].append(name_id)
-                value_att = arg[3].setattr(attribute)
-            except:
-                if not attribute:
-                    print("** attribute name missing **")
-                if not value_att:
-                    print("** value missing **")
 
     def emptyline(self):
         """Do nothing on empty line"""
