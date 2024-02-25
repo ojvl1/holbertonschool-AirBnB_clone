@@ -72,7 +72,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif arg[0] != 'BaseModel':
             print("** class doesn't exist **")
-        elif not arg[1]:
+        elif len(arg) < 2:
             print("** instance id missing **")
         else:
             try:
