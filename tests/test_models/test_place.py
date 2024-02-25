@@ -11,7 +11,7 @@ class TestPlace(unittest.TestCase):
     Test case
     """
 
-    def place_attributes(self):
+    def test_place_attributes(self):
         """
         Test attribute initialization
         """
