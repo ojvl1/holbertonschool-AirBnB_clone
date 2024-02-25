@@ -1,21 +1,21 @@
 #!/usr/bin/python3
-'''
-    test_amenity.py
+"""
+Unittest for Class Amenity
+"""
 
-    Unittest for class Amenity
-'''
 import unittest
 from models.amenity import Amenity
 
 
 class TestAmenity(unittest.TestCase):
-    '''
-        Class Amenity unittest
-    '''
+    """
+    Test case
+    """
 
     def test_amenity_attributes(self):
-        '''
-            Class Amenity test cases'''
+        """
+        Attribute initialization
+        """
         amenity = Amenity()
         self.assertEqual(amenity.name, "")
 
