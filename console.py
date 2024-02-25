@@ -58,8 +58,7 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
         try:
-            name = shlex.split(arg)[0]
-            new_instance = eval(f"{name}()")
+            new_instance = eval(f"{arg}()")
             new_instance.save()
             print(new_instance.id)
         except NameError:
