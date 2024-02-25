@@ -12,7 +12,7 @@ class TestState(unittest.TestCase):
     Test Case
     """
 
-    def state_attributes(self):
+    def test_state_attributes(self):
         """
         Test attribute initialization
         """
