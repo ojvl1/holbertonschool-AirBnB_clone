@@ -11,6 +11,7 @@ class Place(BaseModel):
     FileStorage to manage serialization and
     deserialization
     """
+    
     city_id = ""
     user_id = ""
     name = ""
