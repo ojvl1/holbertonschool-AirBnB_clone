@@ -11,9 +11,6 @@ class City(BaseModel):
     FileStorage to manage serialization and
     deserialization
     """
+    
     state_id = ""
-<<<<<<< HEAD
     name = ""
-=======
-    name = ""
->>>>>>> jc
