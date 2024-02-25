@@ -108,12 +108,18 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """print all dictionary"""
+        list_obj = []
         if not arg:
+            for obj in storage.all().values():
+                list_obj.append(str(obj))
+            print(list_obj)
+        elif arg not in self.__classes_dict:
             print("** class doesn't exist **")
         else:
-            dict_from_storage = storage.all()
-            for all_string in dict_from_storage:
-                print(dict_from_storage[all_string])
+            for obj in storage.all().values():
+                if type(obj).__name__ == arg:
+                    list_obj.append(str(obj))
+            print(list_obj)
 
     def do_update(self, arg):
         """update <class name> <id> <attribute name> <attribute value>"""
