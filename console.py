@@ -57,12 +57,13 @@ class HBNBCommand(cmd.Cmd):
         """Create a new instance"""
         if not arg:
             print("** class name missing **")
-        try:
-            new_instance = eval(f"{arg}()")
-            new_instance.save()
-            print(new_instance.id)
-        except NameError:
-            print("** class doesn't exist **")
+        else:
+            try:
+                new_instance = eval(f"{arg}()")
+                new_instance.save()
+                print(new_instance.id)
+            except NameError:
+                print("** class doesn't exist **")
 
     def do_show(self, arg):
         """Display the instance"""
