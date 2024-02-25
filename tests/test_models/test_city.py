@@ -1,21 +1,22 @@
 #!/usr/bin/python3
 '''
-Unittest for Class City
+    test_city.py
+    
+    Unittest for class City
 '''
-
 import unittest
 from models.city import City
 
+
 class TestCity(unittest.TestCase):
     '''
-    Test Case
+        Class City Unittest
     '''
 
-    def citty_attributes(self):
+    def test_city_attr(self):
         '''
-        Test Attribute Initialization
+            Class City test cases
         '''
-
         city = City()
         self.assertEqual(city.state_id, "")
         self.assertEqual(city.name, "")
