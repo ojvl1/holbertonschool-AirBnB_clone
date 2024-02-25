@@ -93,13 +93,14 @@ class HBNBCommand(cmd.Cmd):
         arg = shlex.split(arg)
         if not arg:
             print("** class name missing **")
-        elif arg[0] != 'BaseModel':
+        elif arg[0] not in self.__classes_dict:
             print("** class doesn't exist **")
-        elif not arg[1]:
+        elif len(arg) < 2:
             print("** instance id missing **")
         else:
             dict_from_storage = storage.all()
-            if dict_from_storage:
+            name_id = arg[0] + "." + arg[1]
+            if name_id in dict_from_storage:
                 del dict_from_storage
             else:
                 print("** no instance found **")
