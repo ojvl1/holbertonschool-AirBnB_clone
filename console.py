@@ -99,9 +99,8 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             dict_from_storage = storage.all()
-            name_id = arg[0] + "." + arg[1]
-            if name_id in dict_from_storage:
-                del dict_from_storage[name_id]
+            if dict_from_storage:
+                del dict_from_storage
             else:
                 print("** no instance found **")
             storage.save()
