@@ -11,10 +11,7 @@ class Review(BaseModel):
     FileStorage to manage serialization and
     deserialization
     """
+    
     place_id = ""
     user_id = ""
-<<<<<<< HEAD
     text = ""
-=======
-    text = ""
->>>>>>> jc
