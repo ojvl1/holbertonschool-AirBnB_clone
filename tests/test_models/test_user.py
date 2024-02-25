@@ -12,7 +12,7 @@ class TestUser(unittest.TestCase):
     Test case
     """
 
-    def user_attributes(self):
+    def test_user_attributes(self):
         """
         Test attribute initialization
         """
