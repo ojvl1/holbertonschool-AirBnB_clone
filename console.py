@@ -57,6 +57,9 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, arg):
         """Display the instance"""
         args = shlex.split(arg)
+        if not arg:
+            print("** class name missing **")
+            return
         if len(args) < 2:
             print("** instance id missing **")
             return
