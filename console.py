@@ -104,7 +104,7 @@ class HBNBCommand(cmd.Cmd):
         """Update an instance"""
         args = shlex.split(arg)
         if len(args) < 4:
-            print("** attribute name missing **")
+            print("** value missing **")
             return
         if args[0] not in self.classes_dict:
             print("** class doesn't exist **")
