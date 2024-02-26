@@ -11,5 +11,5 @@ class Amenity(BaseModel):
     FileStorage to manage serialization and
     deserialization
     """
-    
+
     name = ""
