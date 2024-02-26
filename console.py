@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
         """Delete the instance"""
         args = shlex.split(arg)
         if len(args) < 2:
-            print("** instance id missing **")
+            print("** class name missing **")
             return
         if args[0] not in self.classes_dict:
             print("** class doesn't exist **")
