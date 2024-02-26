@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         if args[0] not in self.classes_dict:
-            print("** class doesn't exist**")
+            print("** class doesn't exist **")
             return
         key = "{}.{}".format(args[0], args[1])
         objects = storage.all()
