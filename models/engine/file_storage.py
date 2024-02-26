@@ -1,6 +1,16 @@
 #!/usr/bin/python3
 
 import json
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
+classes = {"BaseModel": BaseModel, "User": User, "State": State, "City": City,
+           "Amenity": Amenity, "Place": Place, "Review": Review}
 
 
 class FileStorage:
@@ -15,18 +25,20 @@ class FileStorage:
         self.__objects[key] = obj
 
     def save(self):
-        serialized_objects = {key: obj.to_dict() for key, obj in self.__objects.items()}
-        with open(self.__file_path, 'w') as f:
-            json.dump(serialized_objects, f)
-
+        """Serialize __objects to the JSON file"""
+        my_obj = {}
+        for key in self.__objects:
+            my_obj[key] = self.__objects[key].to_dict()
+        with open(self.__file_path, "w", encoding="utf-8") as myfile:
+            json.dump(my_obj, myfile)
+    
     def reload(self):
-        from models.base_model import BaseModel
+        """Deserializes the JSON file to __objects"""
         try:
-            with open(self.__file_path, "r") as file:
-                data = json.load(file)
-                for key, value in data.items():
-                    cls = BaseModel
-                    obj = cls(**value)
-                    self.__objects[key] = obj
+            with open(self.__file_path, "r") as myfile:
+                jsondict = json.load(myfile)
+                for key in jsondict:
+                    classname = jsondict[key]["__class__"]
+                    self.__objects[key] = classes[classname](**jsondict[key])
         except FileNotFoundError:
             pass
