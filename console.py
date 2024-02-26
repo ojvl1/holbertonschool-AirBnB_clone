@@ -99,7 +99,8 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print([str(obj) for obj in objects.values()])
         elif arg in self.classes_dict:
-            print([str(obj) for obj in objects.values() if isinstance(obj, self.classes_dict[arg])])
+            print([str(obj) for obj in objects.values()
+                   if isinstance(obj, self.classes_dict[arg])])
         else:
             print("** class doesn't exist **")
 
@@ -107,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
         """Update an instance"""
         args = shlex.split(arg)
         if not arg:
-            print ("** class name missing **")
+            print("** class name missing **")
             return
         if len(args) < 2:
             print("** instance id missing **")
