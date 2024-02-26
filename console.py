@@ -103,6 +103,15 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
         """Update an instance"""
         args = shlex.split(arg)
+        if not arg:
+            print ("** class name missing **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
         if len(args) < 4:
             print("** value missing **")
             return
