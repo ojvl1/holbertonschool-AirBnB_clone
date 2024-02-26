@@ -75,11 +75,11 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(arg)
         if not arg:
             print("** class name missing **")
-        if len(args) < 2:
-            print("** instance id missing **")
-            return
         if args[0] not in self.classes_dict:
             print("** class doesn't exist **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
             return
         key = "{}.{}".format(args[0], args[1])
         objects = storage.all()
