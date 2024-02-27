@@ -3,7 +3,6 @@
 This module defines the BaseModel class.
 """
 
-import models
 from models import storage
 import uuid
 from datetime import datetime
@@ -41,7 +40,7 @@ class BaseModel:
         Saves the instance to the storage.
         """
         self.updated_at = datetime.now()
-        models.storage.save()
+        storage.save()
 
     def __str__(self):
         """
