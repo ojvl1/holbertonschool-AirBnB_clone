@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+This module defines the BaseModel class.
+"""
 
 from models import storage
 import uuid
@@ -6,8 +9,14 @@ from datetime import datetime
 
 
 class BaseModel:
+    """
+    BaseModel class for all other classes to inherit from.
+    """
 
     def __init__(self, *args, **kwargs):
+        """
+        Initializes a new BaseModel instance
+        """
 
         time = "%Y-%m-%dT%H:%M:%S.%f"
 
@@ -27,14 +36,23 @@ class BaseModel:
             storage.save()
 
     def save(self):
+        """
+        Saves the instance to the storage.
+        """
         self.updated_at = datetime.now()
         storage.save()
 
     def __str__(self):
+        """
+        Returns a string representation of the instance.
+        """
         return "[{:s}] ({:s}) {}".format(self.__class__.__name__,
                                          self.id, self.__dict__)
 
     def to_dict(self):
+        """
+        Returns a dictionary representation of the instance.
+        """
         obj_dict = self.__dict__.copy()
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
