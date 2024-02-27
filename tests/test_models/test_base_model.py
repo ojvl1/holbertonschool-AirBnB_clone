@@ -24,7 +24,7 @@ class TestBase(unittest.TestCase):
 
     def test_str(self):
         """ Unittesting __str__ method """
-        expected = f"[BaseModel] ({my_model.id}) {my_model.to_dict()}"
+        expected = f"[BaseModel] ({my_model.id}) {my_model.__dict__}"
         self.assertEqual(expected, str(my_model))
 
     def test_to_dict(self):
