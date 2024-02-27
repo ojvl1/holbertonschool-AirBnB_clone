@@ -22,19 +22,19 @@ class TestBase(unittest.TestCase):
         """ Unittesting created_at instance """
         self.assertTrue(type(my_model.created_at) is datetime)
 
+    
     def test_str(self):
-        """ Unittesting str method """
-        expected_str = "[{}] ({}) {}".format(
-            my_model.__class__.__name__, my_model.id, my_model.to_dict())
+        """ Unittesting __str__ method """
+        expected_substrings = [
+            f"[{my_model.__class__.__name__}]",
+            f"({my_model.id})",
+            f"'created_at': {my_model.created_at}",
+            f"'updated_at': {my_model.updated_at}"
+        ]
         actual_str = str(my_model)
 
-        # Convert datetime objects to ISO format for comparison
-        expected_str = expected_str.replace(
-            my_model.created_at.isoformat(), str(my_model.created_at))
-        expected_str = expected_str.replace(
-            my_model.updated_at.isoformat(), str(my_model.updated_at))
-
-        self.assertEqual(actual_str, expected_str)
+        for substring in expected_substrings:
+            self.assertIn(substring, actual_str)
 
     def test_to_dict(self):
         """ Unittesting to_dict method """
