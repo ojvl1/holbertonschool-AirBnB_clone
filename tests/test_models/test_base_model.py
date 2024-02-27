@@ -24,8 +24,10 @@ class TestBase(unittest.TestCase):
 
     def test_str(self):
         """ Unittesting __str__ method """
-        self.assertEqual(str(my_model), "[{}] ({}) {}".format(
-            my_model.__class__.__name__, my_model.id, my_model.to_dict()))
+        my_str = "[{}] ({}) {}".format(
+        my_model.__class__.__name__, my_model.id, my_model.to_dict())
+        output_str = str(my_model)
+        self.assertEqual(output_str, my_str)
 
     def test_to_dict(self):
         """ Unittesting to_dict method """
