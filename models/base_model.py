@@ -39,7 +39,7 @@ class BaseModel:
         """
         Saves the instance to the storage.
         """
-        self.updated_at = datetime.now()
+        self.updated_at = datetime.datetime.now()
         storage.save()
 
     def __str__(self):
