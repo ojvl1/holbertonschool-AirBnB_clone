@@ -23,11 +23,18 @@ class TestBase(unittest.TestCase):
         self.assertTrue(type(my_model.created_at) is datetime)
 
     def test_str(self):
-        """ Unittesting __str__ method """
-        my_str = "[{}] ({}) {}".format(
+        """ Unittesting str method """
+        expected_str = "[{}] ({}) {}".format(
             my_model.__class__.__name__, my_model.id, my_model.to_dict())
-        output_str = str(my_model)
-        self.assertEqual(output_str, my_str)
+        actual_str = str(my_model)
+
+        # Convert datetime objects to ISO format for comparison
+        expected_str = expected_str.replace(
+            my_model.created_at.isoformat(), str(my_model.created_at))
+        expected_str = expected_str.replace(
+            my_model.updated_at.isoformat(), str(my_model.updated_at))
+
+        self.assertEqual(actual_str, expected_str)
 
     def test_to_dict(self):
         """ Unittesting to_dict method """
