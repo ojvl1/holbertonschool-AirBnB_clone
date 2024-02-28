@@ -37,11 +37,12 @@ class TestBase(unittest.TestCase):
 
     def test_save(self):
         """ Unittesting save method """
-        self.new.save()
-        key = 'BaseModel' + "." + self.new.id
+        new_model = BaseModel()
+        new_model.save()
+        key = 'BaseModel' + "." + new_model.id
         with open('file.json', 'r') as myfile:
             j = json.load(myfile)
-            self.assertEqual(j[key], self.new.to_dict())
+            self.assertEqual(j[key], new_model.to_dict())
 
 
 if __name__ == '__main__':
